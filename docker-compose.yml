@@ -27,6 +27,6 @@ services:
     depends_on: 
       - dribble-backend
     volumes:
-        - ./frontend:/var/www
+        - ./frontend/dist:/var/www/public/static
         - ./docker/nginx.conf:/etc/nginx/nginx.conf
       

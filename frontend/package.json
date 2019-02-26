@@ -1,0 +1,28 @@
+{
+  "name": "dribble-frontend",
+  "version": "1.0.0",
+  "description": "Front-end code for Dribble app",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "watch": "webpack -w"
+  },
+  "author": "Vic <vic@minustime.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^16.8.5",
+    "@types/react-dom": "^16.8.2",
+    "file-loader": "^3.0.1",
+    "prettier": "^1.16.4",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  }
+}

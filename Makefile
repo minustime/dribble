@@ -11,9 +11,11 @@ help:
 
 code: up explore
 explore:
-	@docker-compose exec dribble zsh 
+	@docker-compose exec dribble-backend zsh 
 up: 
 	@docker-compose up -d
+start: 
+	@docker-compose start
 build: 
 	@docker-compose build --no-cache
 kill:

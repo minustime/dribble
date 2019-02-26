@@ -1,15 +1,16 @@
 version: "3.3"
 
 services:
-  dribble:
-    container_name: dribble
-    build: .
+  dribble-backend:
+    container_name: dribble-backend
+    build: ./backend
     ports:
       - 3000:3000
-    volumes:
-      - ./:/opt/dribble
+    command: '/bin/zsh -c "rm -f ./tmp/pids/server.pid && rails s"'
     depends_on: 
       - mysql
+    volumes:
+      - ./backend:/opt/dribble
     env_file: dribble.env
   mysql:
     image: mysql:5.7
@@ -18,3 +19,14 @@ services:
     volumes:
       - ./volumes/mysql:/var/lib/mysql
     env_file: dribble.env
+  nginx:
+    image: nginx:alpine
+    ports:
+        - 80:80
+        - 443:443
+    depends_on: 
+      - dribble-backend
+    volumes:
+        - ./frontend:/var/www
+        - ./docker/nginx.conf:/etc/nginx/nginx.conf
+      

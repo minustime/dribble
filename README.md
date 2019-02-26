@@ -15,7 +15,7 @@ _in progress_
 $ mysql -h mysql -u root -p<MYSQL_ROOT_PASSWORD from dribble.env>
 mysql> grant all privileges on dribble_development.* to 'username'@'%' identified by <DB_PASSWORD from dribble.env> 
 ```
-5. Prepare the databases `$ rails db:create & rails db:migrate`
+5. Prepare the databases `$ rails db:create && rails db:migrate`
 
 ## Development
 

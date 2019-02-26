@@ -1,7 +1,8 @@
 const path = require('path');
+const env = process.env.NODE_ENV;
 
 module.exports = {
-  mode: 'development',
+  mode: env || 'development',
   entry: {
     vendor: ['react', 'react-dom'],
     dribble: './src/index.tsx',
@@ -22,6 +23,19 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      cacheGroups: {
+        vendors: {
+          name: 'vendor',
+          test: 'vendor',
+          chunks: 'initial',
+          enforce: true,
+        },
+      },
+    },
+  },  
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },

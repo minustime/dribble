@@ -8,27 +8,24 @@ _in progress_
 
 1. Clone this repo `$ git clone git@github.com:minustime/dribble.git && cd dribble` 
 2. Update the `dribble.env` file
-3. Run and enter the container`$ make code` 
-4. Create the database users
+3. Compile the frontend code `$ make fe-build` 
+4. Run and enter the backend container `$ make be-code` 
+5. Create the database users
 
 ```
 $ mysql -h mysql -u root -p<MYSQL_ROOT_PASSWORD from dribble.env>
 mysql> grant all privileges on dribble_development.* to 'username'@'%' identified by <DB_PASSWORD from dribble.env> 
 ```
-5. Prepare the databases `$ rails db:create && rails db:migrate`
+
+6. Prepare the databases `$ rails db:create && rails db:migrate`
 
 ## Development
 
-### Backend
+1. Run and enter the backend container `$ make be-code`
+2. On a separate shell, compile the frontend code in watch mode `$ make fe-code`
+3. Make updates to the application
+4. Build the image and all frontend code `$ make build`
 
-1. Run and enter the container `$ make code`
-2. Make updates to the application
-3. Exit the container and build the updates into the image `$ make build`
-4. Run updated container `$ make code` 
-
-### Frontend
-
-_in progress_
 
 ## Usage
 

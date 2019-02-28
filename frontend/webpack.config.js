@@ -5,17 +5,42 @@ module.exports = {
   mode: env || 'development',
   entry: {
     vendor: ['react', 'react-dom'],
-    dribble: './src/index.tsx',
+    dribble: './src/index.js',
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
+        test: /\.jsx?$/,
         exclude: [/dist/, /node_modules/],
+        loader: 'babel-loader',
       },
       {
-        exclude: [/\.ts$/, /\.tsx$/, /\.scss$/, /\.js$/, /\.html$/, /\.json$/],
+        test: [/\.scss$/],
+        exclude: [/dist/, /node_modules/],
+        use: [
+          { loader: require.resolve('style-loader') },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              localIdentName: '[local]__[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              sourceMap: true,
+            },
+          },
+          {
+            loader: require.resolve('sass-loader'),
+          },
+        ],
+      },
+      {
+        exclude: [/\.js$/, /\.jsx$/, /\.scss$/, /\.html$/, /\.json$/],
         loader: require.resolve('file-loader'),
         options: {
           name: '[name].[hash:8].[ext]',
@@ -35,13 +60,16 @@ module.exports = {
         },
       },
     },
-  },  
+  },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    extensions: ['.jsx', '.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     chunkFilename: '[name].js',
+  },
+  devServer: {
+    contentBase: ['dev'],
   },
 };
